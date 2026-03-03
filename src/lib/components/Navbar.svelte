@@ -30,20 +30,6 @@
 	});
 </script>
 
-<svelte:head>
-	<script type="module">
-		import { CreateHilosWhatsappButton } from 'https://button.hilos.io/whatsapp-button.esm.js';
-		CreateHilosWhatsappButton({
-			phone: '+524421878771',
-			message: '',
-			color: '#ffffff',
-			background: '#72d66e',
-			position: 'right',
-			padding: '20'
-		});
-	</script>
-</svelte:head>
-
 <svelte:window bind:scrollY={y} />
 
 <header
@@ -98,7 +84,7 @@
 		<!-- Desktop CTAs -->
 		<div class="flex hidden items-center gap-4 md:flex">
 			<a
-				href="https://api.whatsapp.com/send?phone=524421878771&text=Bienvenido%20a%20SC%20Servicios"
+				href="https://api.whatsapp.com/send?phone=524421878771&text=Hola,%20quiero%20informes%20de:%20"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-[#25D366] text-white transition-all hover:bg-[#20ba5a] hover:shadow-lg active:scale-95"
@@ -108,21 +94,10 @@
 			</a>
 		</div>
 
-		<script type="module">
-			import { CreateHilosWhatsappButton } from 'https://button.hilos.io/whatsapp-button.esm.js';
-			CreateHilosWhatsappButton({
-				phone: '+524421878771',
-				message: '',
-				color: '#ffffff',
-				background: '#72d66e',
-				position: 'right',
-				padding: '20'
-			});
-		</script>
 		<!-- Mobile Whatsapp -->
 		<div class="flex md:hidden">
 			<a
-				href="https://api.whatsapp.com/send?phone=524421878771&text=Bienvenido%20a%20SC%20Servicios"
+				href="https://api.whatsapp.com/send?phone=524421878771&text=Hola,%20quiero%20informes%20de:%20"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="flex h-10 w-10 items-center justify-center rounded-full border border-white bg-[#25D366] text-white transition-all active:scale-95"
