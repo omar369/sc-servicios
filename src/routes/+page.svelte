@@ -7,33 +7,22 @@
 			id: 'productos',
 			title: 'Productos',
 			description: 'Catálogo completo de soluciones para tu espacio.',
-			image:
-				'https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?auto=format&fit=crop&q=80&w=1200',
+			video: '/servicio_pintura.mp4',
 			link: '/productos'
 		},
 		{
 			id: 'servicios',
 			title: 'Servicios',
 			description: 'Aplicación profesional y certificada en cada proyecto.',
-			image:
-				'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=1200',
+			video: '/servicios_imper.mp4',
 			link: '/servicios'
 		},
 		{
 			id: 'sobre-nosotros',
 			title: 'Sobre Nosotros',
 			description: 'Conoce sobre nuestra misión, visión y compromiso social.',
-			image:
-				'https://images.unsplash.com/photo-1504307651254-35680f356bfb?auto=format&fit=crop&q=80&w=1200',
+			video: '/servicio_pintura2.mp4',
 			link: '/sobre-nosotros'
-		},
-		{
-			id: 'portafolio',
-			title: 'Portafolio',
-			description: 'Entra a conocer nuestra trayectoria con demostraciones de trabajos previos.',
-			image:
-				'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1200',
-			link: '/contacto'
 		},
 		{
 			id: 'contacto',
@@ -71,16 +60,34 @@
 								href={section.link}
 								class="group relative block h-[55vh] max-h-[700px] min-h-[400px] w-full overflow-hidden bg-[#050a14] transition-all duration-500"
 							>
-								<!-- Image -->
-								<img
-									src={section.image}
-									alt={section.title}
-									class="absolute inset-0 h-full w-full scale-100 transform object-cover opacity-60 transition-transform duration-700 ease-in-out group-hover:scale-105 group-hover:opacity-40"
-								/>
+								<!-- Background logic -->
+								{#if section.video}
+									<video
+										src={section.video}
+										autoplay
+										loop
+										muted
+										playsinline
+										class="absolute inset-0 h-full w-full scale-100 transform object-cover opacity-60 transition-transform duration-700 ease-in-out group-hover:scale-105 group-hover:opacity-40"
+									></video>
+									<!-- Dark Overlay for better text readability -->
+									<div
+										class="absolute inset-0 bg-black/40 mix-blend-multiply transition-colors duration-500 group-hover:bg-black/60"
+									></div>
+								{:else}
+									<img
+										src={section.image}
+										alt={section.title}
+										class="absolute inset-0 h-full w-full scale-100 transform object-cover opacity-60 transition-transform duration-700 ease-in-out group-hover:scale-105 group-hover:opacity-40"
+									/>
+									<div
+										class="absolute inset-0 bg-black/40 mix-blend-multiply transition-colors duration-500 group-hover:bg-black/60"
+									></div>
+								{/if}
 
 								<!-- Minimal Overlay Box -->
 								<div
-									class="absolute inset-10 z-20 flex flex-col items-center justify-center border border-white/20 bg-black/5 text-center backdrop-blur-[2px] transition-colors duration-500 group-hover:border-white/50 group-hover:bg-black/20"
+									class="absolute inset-10 z-20 flex flex-col items-center justify-center border border-white/20 bg-black/20 text-center backdrop-blur-[2px] transition-colors duration-500 group-hover:border-white/50 group-hover:bg-black/40"
 								>
 									<h2
 										class="mb-4 text-4xl font-bold tracking-tight text-white drop-shadow-lg md:text-5xl"

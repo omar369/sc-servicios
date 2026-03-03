@@ -1,8 +1,9 @@
 <script lang="ts">
 	import * as NavigationMenu from '$lib/components/ui/navigation-menu/index.js';
-	import { buttonVariants } from '$lib/components/ui/button/index.js';
-
+	import { slide } from 'svelte/transition';
+	import Menu from 'lucide-svelte/icons/menu';
 	import Home from 'lucide-svelte/icons/home';
+	import X from 'lucide-svelte/icons/x';
 
 	const links = [
 		{ href: '/', label: 'Inicio' },
@@ -11,19 +12,46 @@
 		{ href: '/sobre-nosotros', label: 'Sobre nosotros' },
 		{ href: '/contacto', label: 'Contacto' }
 	];
+
+	let y = $state(0);
+	let lastY = $state(0);
+	let hidden = $state(false);
+	let menuOpen = $state(false);
+
+	$effect(() => {
+		// Hide navbar when scrolling down past 80px, show when scrolling up
+		if (y > 80 && y > lastY) {
+			hidden = true;
+			menuOpen = false; // Close menu on scroll down
+		} else if (y < lastY) {
+			hidden = false;
+		}
+		lastY = y;
+	});
 </script>
 
-<header class="full sticky border-b bg-[#f28705] shadow-sm">
+<svelte:window bind:scrollY={y} />
+
+<header
+	class="sticky top-0 z-50 w-full border-b bg-[#f28705] shadow-sm transition-transform duration-300 {hidden
+		? '-translate-y-full'
+		: 'translate-y-0'}"
+>
 	<div class="relative container mx-auto flex h-20 items-center justify-between px-6 md:px-12">
-		<!-- Logo -->
+		<!-- Left section: Hamburger (mobile) + Logo -->
 		<div class="flex items-center gap-2 md:gap-4">
-			<a
-				href="/"
-				class="z-10 transition-transform duration-300 hover:scale-105"
-				aria-label="Inicio"
+			<button
+				class="z-10 -ml-2 p-2 text-white transition-transform duration-300 hover:scale-105 active:scale-95 md:hidden"
+				onclick={() => (menuOpen = !menuOpen)}
+				aria-label="Abrir Menú"
 			>
-				<Home class="h-6 w-6 text-white" />
-			</a>
+				{#if menuOpen}
+					<X class="h-6 w-6" />
+				{:else}
+					<Home class="h-6 w-6" />
+				{/if}
+			</button>
+
 			<a
 				href="/"
 				class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 hover:scale-105 md:static md:translate-x-0 md:translate-y-0"
@@ -53,8 +81,8 @@
 			</NavigationMenu.List>
 		</NavigationMenu.Root>
 
-		<!-- CTAs -->
-		<div class="flex items-center gap-4">
+		<!-- Desktop CTAs -->
+		<div class="flex hidden items-center gap-4 md:flex">
 			<a
 				href="https://wa.me/your-number"
 				target="_blank"
@@ -65,5 +93,38 @@
 				<img src="/wa_logo.svg" alt="WhatsApp Icon" class="h-12 w-12 object-contain" />
 			</a>
 		</div>
+
+		<!-- Mobile Whatsapp -->
+		<div class="flex md:hidden">
+			<a
+				href="https://wa.me/your-number"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="flex h-10 w-10 items-center justify-center rounded-full border border-white bg-[#25D366] text-white transition-all active:scale-95"
+				aria-label="WhatsApp"
+			>
+				<img src="/wa_logo.svg" alt="WhatsApp Icon" class="h-8 w-8 object-contain" />
+			</a>
+		</div>
 	</div>
+
+	<!-- Mobile Menu Dropdown -->
+	{#if menuOpen}
+		<div
+			class="absolute top-[80px] left-0 w-full border-t border-white/20 bg-[#f28705] shadow-lg md:hidden"
+			transition:slide={{ duration: 300 }}
+		>
+			<nav class="flex flex-col items-center space-y-6 py-6">
+				{#each links as link}
+					<a
+						href={link.href}
+						class="text-xl font-medium text-white transition-colors hover:text-gray-200"
+						onclick={() => (menuOpen = false)}
+					>
+						{link.label}
+					</a>
+				{/each}
+			</nav>
+		</div>
+	{/if}
 </header>
