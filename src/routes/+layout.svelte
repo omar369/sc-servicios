@@ -8,7 +8,7 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<div class="relative flex min-h-screen flex-col bg-background font-sans antialiased text-foreground">
+<div class="relative flex min-h-screen flex-col bg-[#F4F2E5] font-sans text-foreground antialiased">
 	<Navbar />
 	<main class="flex-1">
 		{@render children()}

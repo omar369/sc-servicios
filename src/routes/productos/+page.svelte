@@ -117,7 +117,7 @@
 	<title>Productos | SC-Servicios</title>
 </svelte:head>
 
-<section class="min-h-screen bg-gray-50 px-4 py-16 md:px-8">
+<section class="min-h-screen px-4 py-16 md:px-8">
 	<div class="mx-auto max-w-7xl">
 		<div class="mb-12 text-center">
 			<h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">

@@ -13,12 +13,8 @@
 	];
 </script>
 
-<header
-	class="full bg-bag-secondary bckground/80 bg-secondaryund sticky border-b shadow-sm backdrop-blur-md transition-all duration-300 supports-[backdrop-filter]:bg-background/60"
->
-	<div
-		class="relative container mx-auto flex h-20 items-center justify-between bg-[#f28705] px-6 md:px-12"
-	>
+<header class="full sticky border-b bg-[#f28705] shadow-sm">
+	<div class="relative container mx-auto flex h-20 items-center justify-between px-6 md:px-12">
 		<!-- Logo -->
 		<div class="flex items-center gap-2 md:gap-4">
 			<a
