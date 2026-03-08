@@ -5,7 +5,8 @@ node_modules
 .vercel
 .netlify
 .wrangler
-/.svelte-kit
+.gemini/
+.svelte-kit/
 /build
 
 # OS
