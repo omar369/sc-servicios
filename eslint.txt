@@ -1,0 +1,6 @@
+﻿
+C:\Users\Admin\Documents\code_stuff\web_proj\NextJS\catalogos\sc-servicios\src\routes\+page.svelte
+  59:9  error  Unexpected href link without resolve()  svelte/no-navigation-without-resolve
+
+Ô£û 1 problem (1 error, 0 warnings)
+

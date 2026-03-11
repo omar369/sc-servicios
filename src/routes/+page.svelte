@@ -1,6 +1,5 @@
 <script lang="ts">
 	import * as Carousel from '$lib/components/ui/carousel/index.js';
-	import { ArrowRight, ArrowLeft } from 'lucide-svelte';
 
 	const sections = [
 		{
@@ -54,9 +53,10 @@
 				class="group/carousel w-full cursor-grab active:cursor-grabbing"
 			>
 				<Carousel.Content class="-ml-4 md:-ml-8">
-					{#each sections as section}
+					{#each sections as section (section.id)}
 						<Carousel.Item class="basis-full pl-4 md:basis-1/2 md:pl-8 lg:basis-1/3">
 							<a
+								// eslint-disable-next-line svelte/no-navigation-without-resolve
 								href={section.link}
 								class="group relative block h-[55vh] max-h-[700px] min-h-[400px] w-full overflow-hidden bg-[#050a14] transition-all duration-500"
 							>
